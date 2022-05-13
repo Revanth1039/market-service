@@ -1,0 +1,15 @@
+spring:
+  data:
+    mongodb:
+      database: manage-data
+      host: localhost
+      port: 27017
+#  rabbitmq:
+#      addresses: localhost:15672
+
+
+server:
+  port:
+    9000
+
+
