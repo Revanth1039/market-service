@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class MarketModel {
 
     private Long marketID;
-    private String name;
+    private String marketName;
     private String center;
     private Long radius;
     private Float latitude;
@@ -24,7 +24,7 @@ public class MarketModel {
     private String slug;
     private String description;
     private URL photo;
-    private String state;
+    private String marketState;
     private LocalDateTime deletedAt;
     private Integer mapZoom;
     private Integer androidMapZoom;

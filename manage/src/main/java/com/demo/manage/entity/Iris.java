@@ -5,22 +5,20 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
 @Builder
 @Document(collection="manage-data")
-@Entity
-@Table( name = "iris" )
 @AllArgsConstructor
 @NoArgsConstructor
 public class Iris {
 
     @Id
-    @Column(name = "id", nullable = false)
     private Long irisID;
     private String username;
     private String password;
@@ -35,7 +33,6 @@ public class Iris {
     private String transactionToken;
     private String encryptedTransactionToken;
     private String encryptedTransactionTokenIv;
-    @Column(name = "marketId", nullable = false)
     private Long marketID;
     private LocalDateTime deletedAt;
 

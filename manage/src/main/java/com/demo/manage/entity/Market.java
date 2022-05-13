@@ -1,19 +1,18 @@
 package com.demo.manage.entity;
 
+import java.net.URL;
+import java.time.LocalDateTime;
+
+
+
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.net.URL;
-import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,15 +22,10 @@ import java.time.LocalDateTime;
 public class Market {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY )
-    @Column(name = "id", nullable = false)
     private Long marketID;
-    @Column(updatable = false)
-    @CreationTimestamp
     private LocalDateTime createdAt;
-    @UpdateTimestamp
     private LocalDateTime updatedAt;
-    private String name;
+    private String marketName;
     private String center;
     private Long radius;
     private Float latitude;
@@ -40,7 +34,7 @@ public class Market {
     private String slug;
     private String description;
     private URL photo;
-    private String state;
+    private String marketState;
     private LocalDateTime deletedAt;
     private Integer mapZoom;
     private Integer androidMapZoom;

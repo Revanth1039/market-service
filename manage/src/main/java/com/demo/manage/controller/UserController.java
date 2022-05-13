@@ -14,9 +14,13 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    
+    
 
     @PostMapping("/addUserInMQ")
     public void addUser(UserModel userModel){
         userService.sendUserDetailsViaMQ(userModel);
     }
+    
+    
 }

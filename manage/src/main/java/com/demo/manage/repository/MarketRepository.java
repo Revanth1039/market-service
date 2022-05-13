@@ -7,11 +7,13 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MarketRepository extends MongoRepository<Market,String> {
+public interface MarketRepository extends MongoRepository<Market,Long> {
     Market getByMarketName(String name);
 
     void deleteByMarketName(String name);
 
 
     Page<Market> findAllByMarketStateOrderByMarketName(String state, Pageable paging);
+
+    boolean existsByMarketName(String name);
 }

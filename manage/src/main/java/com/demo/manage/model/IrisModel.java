@@ -1,13 +1,12 @@
 package com.demo.manage.model;
 
 
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.Column;
-import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
