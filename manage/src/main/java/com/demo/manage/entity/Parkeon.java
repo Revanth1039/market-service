@@ -27,13 +27,13 @@ public class Parkeon {
     private Long parkeonID;
     @Column(updatable = false)
     @CreationTimestamp
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
     @UpdateTimestamp
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
     private String username;
-    private String encrypted_password;
-    private String encrypted_password_iv;
-    private LocalDateTime deleted_at;
+    private String encryptedPassword;
+    private String encryptedPasswordIv;
+    private LocalDateTime deletedAt;
     @Column(name = "market_id", nullable = false)
     private Long marketID;
 }

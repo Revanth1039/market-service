@@ -4,7 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import javax.persistence.Column;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -15,9 +18,9 @@ public class ParkeonModel {
 
     private Long parkeonID;
     private String username;
-    private String encrypted_password;
-    private String encrypted_password_iv;
-    private LocalDateTime deleted_at;
+    private String encryptedPassword;
+    private String encryptedPasswordIv;
+    private LocalDateTime deletedAt;
     private Long marketID;
 }
 

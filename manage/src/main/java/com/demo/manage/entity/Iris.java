@@ -24,19 +24,19 @@ public class Iris {
     private Long irisID;
     private String username;
     private String password;
-    private String encrypted_password;
-    private String encrypted_password_iv;
-    private String paystation_token;
-    private String encrypted_paystation_token;
-    private String encrypted_paystation_token_iv;
-    private String plateinfo_token;
-    private String encrypted_plateinfo_token;
-    private String encrypted_plateinfo_token_iv;
-    private String transaction_token;
-    private String encrypted_transaction_token;
-    private String encrypted_transaction_token_iv;
-    @Column(name = "market_id", nullable = false)
+    private String encryptedPassword;
+    private String encryptedPasswordIv;
+    private String paystationToken;
+    private String encryptedPaystationToken;
+    private String encryptedPaystationTokenIv;
+    private String plateinfoToken;
+    private String encryptedPlateinfoToken;
+    private String encryptedPlateinfoTokenIv;
+    private String transactionToken;
+    private String encryptedTransactionToken;
+    private String encryptedTransactionTokenIv;
+    @Column(name = "marketId", nullable = false)
     private Long marketID;
-    private LocalDateTime deleted_at;
+    private LocalDateTime deletedAt;
 
 }
