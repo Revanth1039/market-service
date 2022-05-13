@@ -37,9 +37,10 @@ public class ManageController {
     }
 
 
-    @PutMapping("/updateMarket")
-    public MarketDto updateMarket(MarketDto marketDto){
-        return manageService.updateMarketInRepository(marketDto);
+    @PutMapping("/updateMarket/{id}")
+    public MarketDto updateMarket(@RequestBody MarketDto marketDto,@PathVariable String id){
+    	marketDto.setMarketID(id);
+        return manageService.updateMarketInRepository(marketDto,id);
 
     }
     @DeleteMapping("/removeMarketByName/{name}")
