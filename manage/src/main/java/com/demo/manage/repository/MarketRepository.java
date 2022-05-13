@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MarketRepository extends MongoRepository<Market,Long> {
+public interface MarketRepository extends MongoRepository<Market,String> {
 
     void deleteByMarketName(String name);
 
@@ -17,7 +17,7 @@ public interface MarketRepository extends MongoRepository<Market,Long> {
     boolean existsByMarketName(String name);
 
 
-	Market getByMarketID(Long id);
+	Market getByMarketID(String id);
 
 
 	Market getByMarketName(String name);

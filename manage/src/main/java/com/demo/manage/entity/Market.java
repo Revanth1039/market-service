@@ -2,9 +2,9 @@ package com.demo.manage.entity;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -22,8 +22,8 @@ import lombok.NoArgsConstructor;
 public class Market {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long marketID;
+    @Builder.Default
+    private String marketID=UUID.randomUUID().toString();
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private String marketName;

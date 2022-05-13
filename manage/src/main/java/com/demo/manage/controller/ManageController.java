@@ -32,7 +32,7 @@ public class ManageController {
     }
 
     @GetMapping("/getMarketById/{id}")
-    public MarketDto getMarketInfo(@PathVariable Long id){
+    public MarketDto getMarketInfo(@PathVariable String id){
         return manageService.getMarketById(id);
     }
 

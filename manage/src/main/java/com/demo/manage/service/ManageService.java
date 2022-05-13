@@ -43,7 +43,7 @@ public class ManageService {
         return marketDto;
     }
 
-    public MarketDto getMarketById(Long id) {
+    public MarketDto getMarketById(String id) {
         Market market=marketRepository.findById(id).get();
         log.info(market.toString());
         MarketDto marketDto=new MarketDto();

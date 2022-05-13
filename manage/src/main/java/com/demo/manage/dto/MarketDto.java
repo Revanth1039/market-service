@@ -1,9 +1,6 @@
 package com.demo.manage.dto;
-
 import java.time.Instant;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,8 +13,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class MarketDto {
 
-	@GeneratedValue(strategy = GenerationType.AUTO)
-    private Long marketID;
+    @Builder.Default
+    private String marketID=UUID.randomUUID().toString();
     private String marketName;
     private String center;
     private Float radius;
