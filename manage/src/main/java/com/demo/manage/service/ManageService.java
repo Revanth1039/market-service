@@ -1,19 +1,21 @@
 package com.demo.manage.service;
 
 
-import com.demo.manage.entity.Market;
-import com.demo.manage.model.MarketModel;
-import com.demo.manage.repository.MarketRepository;
-import lombok.extern.slf4j.Slf4j;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.demo.manage.dto.MarketDto;
+import com.demo.manage.entity.Market;
+import com.demo.manage.repository.MarketRepository;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
@@ -34,55 +36,55 @@ public class ManageService {
 		this.rabbitTemplate = rabbitTemplate;
 	}
 
-	public MarketModel addMarketToRepository(MarketModel marketModel) {
+	public MarketDto addMarketToRepository(MarketDto marketDto) {
         Market market=new Market();
-        BeanUtils.copyProperties(marketModel,market);
+        BeanUtils.copyProperties(marketDto,market);
         marketRepository.save(market);
-        return marketModel;
+        return marketDto;
     }
 
-    public MarketModel getMarketById(String name) {
+    public MarketDto getMarketById(String name) {
         Market market=marketRepository.getByMarketName(name);
         log.info(market.toString());
-        MarketModel marketModel=new MarketModel();
-        BeanUtils.copyProperties(market,marketModel);
-        return marketModel;
+        MarketDto marketDto=new MarketDto();
+        BeanUtils.copyProperties(market,marketDto);
+        return marketDto;
     }
 
-    public MarketModel updateMarketInRepository(MarketModel marketModel) {
+    public MarketDto updateMarketInRepository(MarketDto marketDto) {
         Market market=new Market();
-        BeanUtils.copyProperties(marketModel,market);
+        BeanUtils.copyProperties(marketDto,market);
         marketRepository.save(market);
-        return marketModel;
+        return marketDto;
     }
 
-    public MarketModel removeMarketById(String name) {
+    public MarketDto removeMarketById(String name) {
         if(marketRepository.existsByMarketName(name)){
             Market market=marketRepository.getByMarketName(name);
-            MarketModel marketModel=new MarketModel();
-            BeanUtils.copyProperties(market,marketModel);
+            MarketDto marketDto=new MarketDto();
+            BeanUtils.copyProperties(market,marketDto);
             marketRepository.deleteByMarketName(name);
-            return marketModel;
+            return marketDto;
         }
         return null;
     }
 
-    public List<MarketModel> findAllMarketsByState(String state,Integer pageNo) {
-        List<MarketModel> marketModels=new ArrayList<>();
+    public List<MarketDto> findAllMarketsByState(String state,Integer pageNo) {
+        List<MarketDto> marketModels=new ArrayList<>();
         Pageable paging = PageRequest.of(pageNo,10);
         Page<Market> pagedResult=marketRepository.findAllByMarketStateOrderByMarketName(state,paging);
         pagedResult.toList().stream().forEach((market) -> {
-            MarketModel marketModel=new MarketModel();
-            BeanUtils.copyProperties(market,marketModel);
-            marketModels.add(marketModel);
+        	MarketDto marketDto=new MarketDto();
+            BeanUtils.copyProperties(market,marketDto);
+            marketModels.add(marketDto);
         });
         return marketModels;
 
     }
 
-	public String sendDataToMQ(MarketModel marketModel) {
+	public String sendDataToMQ(MarketDto marketDto) {
 		log.info("sending data to MQ");
-        rabbitTemplate.convertAndSend(EXCHANGE, ROUTING_KEY, marketModel);
+        rabbitTemplate.convertAndSend(EXCHANGE, ROUTING_KEY, marketDto);
         return "Sent data Successfully";
 	}
 }

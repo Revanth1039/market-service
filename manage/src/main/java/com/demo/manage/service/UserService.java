@@ -1,11 +1,11 @@
 package com.demo.manage.service;
 
 
-import com.demo.manage.model.UserModel;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import com.demo.manage.dto.UserDto;
 
 @Service
 public class UserService {
@@ -18,8 +18,8 @@ public class UserService {
     public static final String ROUTING_KEY = "sample_routingKey";
 
 
-    public void sendUserDetailsViaMQ(UserModel user){
-        rabbitTemplate.convertAndSend(EXCHANGE,ROUTING_KEY, user);
+    public void sendUserDetailsViaMQ(UserDto userDto){
+        rabbitTemplate.convertAndSend(EXCHANGE,ROUTING_KEY, userDto);
 
     }
 }

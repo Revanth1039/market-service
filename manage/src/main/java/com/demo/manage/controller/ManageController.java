@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.manage.model.MarketModel;
+import com.demo.manage.dto.MarketDto;
 import com.demo.manage.service.ManageService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -27,35 +27,35 @@ public class ManageController {
     private ManageService manageService;
 
     @PostMapping("/addMarket")
-    public MarketModel addMarket(@RequestBody MarketModel marketModel){
-        return manageService.addMarketToRepository(marketModel);
+    public MarketDto addMarket(@RequestBody MarketDto marketDto){
+        return manageService.addMarketToRepository(marketDto);
     }
 
     @GetMapping("/getMarketByName/{name}")
-    public MarketModel getMarketInfo(@PathVariable String name){
+    public MarketDto getMarketInfo(@PathVariable String name){
         log.info(name);
         return manageService.getMarketById(name);
     }
 
 
     @PutMapping("/updateMarket")
-    public MarketModel updateMarket(MarketModel marketModel){
-        return manageService.updateMarketInRepository(marketModel);
+    public MarketDto updateMarket(MarketDto marketDto){
+        return manageService.updateMarketInRepository(marketDto);
 
     }
     @DeleteMapping("/removeMarketByName/{name}")
-    public MarketModel deleteMarket(@PathVariable String name){
+    public MarketDto deleteMarket(@PathVariable String name){
         return manageService.removeMarketById(name);
     }
 
     @GetMapping("/getAllMarketsByState/{state}/{pageNo}")
-    public List<MarketModel> getAllMaketsbyState(@PathVariable String state, @PathVariable Integer pageNo){
+    public List<MarketDto> getAllMaketsbyState(@PathVariable String state, @PathVariable Integer pageNo){
         return manageService.findAllMarketsByState(state,pageNo);
     }
     
     @PostMapping("/addMarketInMQ")
-    public String sendDataToMQ(@RequestBody MarketModel marketModel){
-        return manageService.sendDataToMQ(marketModel);
+    public String sendDataToMQ(@RequestBody MarketDto marketDto){
+        return manageService.sendDataToMQ(marketDto);
     }
 
     

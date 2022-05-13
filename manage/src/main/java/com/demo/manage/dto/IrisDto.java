@@ -1,4 +1,4 @@
-package com.demo.manage.model;
+package com.demo.manage.dto;
 
 
 import java.time.LocalDateTime;
@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class IrisModel {
+public class IrisDto {
 
     private Long irisID;
     private String username;

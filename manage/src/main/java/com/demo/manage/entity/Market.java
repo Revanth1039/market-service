@@ -1,10 +1,7 @@
 package com.demo.manage.entity;
 
-import java.net.URL;
+import java.time.Instant;
 import java.time.LocalDateTime;
-
-
-
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -27,15 +24,15 @@ public class Market {
     private LocalDateTime updatedAt;
     private String marketName;
     private String center;
-    private Long radius;
+    private Float radius;
     private Float latitude;
     private Float longitude;
     private String timeZone;
     private String slug;
     private String description;
-    private URL photo;
+    private String photo;
     private String marketState;
-    private LocalDateTime deletedAt;
+    private Instant deletedAt;
     private Integer mapZoom;
     private Integer androidMapZoom;
     private Integer iosMapZoom;

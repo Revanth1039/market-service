@@ -1,4 +1,4 @@
-package com.demo.manage.model;
+package com.demo.manage.dto;
 
 import java.time.LocalDateTime;
 
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class ParkeonModel {
+public class ParkeonDto {
 
     private Long parkeonID;
     private String username;

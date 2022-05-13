@@ -1,15 +1,15 @@
 package com.demo.manage.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.time.Instant;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
@@ -34,6 +34,6 @@ public class Iris {
     private String encryptedTransactionToken;
     private String encryptedTransactionTokenIv;
     private Long marketID;
-    private LocalDateTime deletedAt;
+    private Instant deletedAt;
 
 }

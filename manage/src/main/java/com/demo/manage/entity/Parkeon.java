@@ -1,14 +1,14 @@
 package com.demo.manage.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.time.Instant;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 
@@ -22,12 +22,12 @@ public class Parkeon {
 
     @Id
     private Long parkeonID;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private Instant createdAt;
+    private Instant updatedAt;
     private String username;
     private String encryptedPassword;
     private String encryptedPasswordIv;
-    private LocalDateTime deletedAt;
+    private Instant deletedAt;
     private Long marketID;
 }
 
