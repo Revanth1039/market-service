@@ -53,6 +53,7 @@ public class ManageService {
 			Market market = marketRepository.findById(id).get();
 			log.info(market.toString());
 			BeanUtils.copyProperties(marketDto, market);
+			marketRepository.save(market);
 			return marketDto;
 		}
 		return null;
