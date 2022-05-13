@@ -2,6 +2,9 @@ package com.demo.manage.dto;
 
 import java.time.Instant;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +16,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class MarketDto {
 
+	@GeneratedValue(strategy = GenerationType.AUTO)
     private Long marketID;
     private String marketName;
     private String center;

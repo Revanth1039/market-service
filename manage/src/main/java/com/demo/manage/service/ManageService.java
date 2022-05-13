@@ -43,8 +43,8 @@ public class ManageService {
         return marketDto;
     }
 
-    public MarketDto getMarketById(String name) {
-        Market market=marketRepository.getByMarketName(name);
+    public MarketDto getMarketById(Long id) {
+        Market market=marketRepository.findById(id).get();
         log.info(market.toString());
         MarketDto marketDto=new MarketDto();
         BeanUtils.copyProperties(market,marketDto);

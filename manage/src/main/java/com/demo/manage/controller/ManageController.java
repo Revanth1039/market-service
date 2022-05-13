@@ -31,10 +31,9 @@ public class ManageController {
         return manageService.addMarketToRepository(marketDto);
     }
 
-    @GetMapping("/getMarketByName/{name}")
-    public MarketDto getMarketInfo(@PathVariable String name){
-        log.info(name);
-        return manageService.getMarketById(name);
+    @GetMapping("/getMarketById/{id}")
+    public MarketDto getMarketInfo(@PathVariable Long id){
+        return manageService.getMarketById(id);
     }
 
 

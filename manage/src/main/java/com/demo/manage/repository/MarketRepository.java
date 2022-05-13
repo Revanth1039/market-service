@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MarketRepository extends MongoRepository<Market,Long> {
-    Market getByMarketName(String name);
 
     void deleteByMarketName(String name);
 
@@ -16,4 +15,11 @@ public interface MarketRepository extends MongoRepository<Market,Long> {
     Page<Market> findAllByMarketStateOrderByMarketName(String state, Pageable paging);
 
     boolean existsByMarketName(String name);
+
+
+	Market getByMarketID(Long id);
+
+
+	Market getByMarketName(String name);
+
 }

@@ -3,6 +3,9 @@ package com.demo.manage.entity;
 import java.time.Instant;
 import java.time.LocalDateTime;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -19,6 +22,7 @@ import lombok.NoArgsConstructor;
 public class Market {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long marketID;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
