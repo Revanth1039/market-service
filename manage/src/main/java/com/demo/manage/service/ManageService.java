@@ -8,8 +8,10 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import com.demo.manage.controller.exception.MarketExceptionMessage;
 import com.demo.manage.dto.MarketDto;
 import com.demo.manage.entity.Market;
 import com.demo.manage.enums.MarketStatus;
@@ -33,23 +35,31 @@ public class ManageService {
 		this.rabbitTemplate = rabbitTemplate;
 	}
 
-	public MarketDto addMarketToRepository(MarketDto marketDto) {
+	public MarketDto addMarketToRepository(MarketDto marketDto) throws MarketExceptionMessage {
+		try {
 		ModelMapper modelMapper = new ModelMapper();
 		Market market=modelMapper.map(marketDto, Market.class);
 		log.info(market.toString());
 		marketRepository.save(market);
 		return marketDto;
+		}
+		catch(Exception ex) {
+			throw new MarketExceptionMessage(String.valueOf(HttpStatus.BAD_REQUEST),ex.getMessage());
+		}
 	}
 
-	public MarketDto getMarketById(String id) {
-		Market market = marketRepository.findById(id).get();
+	public MarketDto getMarketById(String id) throws MarketExceptionMessage {
+		Market market = marketRepository.findById(id).orElse(null);
+		if(market==null) {
+			throw new MarketExceptionMessage(String.valueOf(HttpStatus.NOT_FOUND),"Market id not found");
+		}
 		log.info(market.toString());
 		ModelMapper modelMapper = new ModelMapper();
 		MarketDto marketDto=modelMapper.map(market, MarketDto.class);
 		return marketDto;
 	}
 
-	public MarketDto updateMarketInRepository(MarketDto marketDto, String id) {
+	public MarketDto updateMarketInRepository(MarketDto marketDto, String id) throws MarketExceptionMessage {
 		log.info(marketDto.toString()+" "+id);
 		if (marketRepository.existsById(id)) {
 			Market market = marketRepository.findById(id).get();
@@ -59,10 +69,10 @@ public class ManageService {
 			marketRepository.save(market);
 			return marketDto;
 		}
-		return null;
+		throw new MarketExceptionMessage(String.valueOf(HttpStatus.NOT_FOUND),"Market id not found");
 	}
 
-	public MarketDto removeMarketById(String name) {
+	public MarketDto removeMarketById(String name) throws MarketExceptionMessage {
 		if (marketRepository.existsByMarketName(name)) {
 			Market market = marketRepository.getByMarketName(name);
 			ModelMapper modelMapper = new ModelMapper();
@@ -70,7 +80,7 @@ public class ManageService {
 			marketRepository.deleteByMarketName(name);
 			return marketDto;
 		}
-		return null;
+		throw new MarketExceptionMessage(String.valueOf(HttpStatus.NOT_FOUND),"Market id not found");
 	}
 
 	public List<MarketDto> findAllMarketsByState(MarketStatus status, Integer pageNo) {

@@ -1,7 +1,6 @@
 package com.demo.manage.entity;
 
 import java.time.Instant;
-import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
