@@ -1,5 +1,4 @@
 package com.demo.manage.entity;
-import com.demo.manage.enums.*;
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
@@ -7,6 +6,8 @@ import java.util.UUID;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.demo.manage.enums.MarketStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -52,8 +53,8 @@ public class Market {
     private Boolean visible;
     private String defaultHomeScreen;
     private String marketLocation;
-    private List<Iris> irisInfo;
-    private List<Parkeon> parkingInfo;
+    private Iris irisInfo;
+    private Parkeon parkingInfo;
     private List<Venue> venueInfo;
 
 }

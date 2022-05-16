@@ -44,8 +44,8 @@ public class MarketDto {
     private String defaultHomeScreen;
     private MarketStatus marketStatus;
     private String marketLocation;
-    private List<IrisDto> irisInfo;
-    private List<ParkeonDto> parkingInfo;
+    private IrisDto irisInfo;
+    private ParkeonDto parkingInfo;
     private List<VenueDto> venueInfo;
 
 }
