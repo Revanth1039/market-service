@@ -42,7 +42,8 @@ public class MarketDto {
     private Integer competitorLocationsCount;
     private Boolean visible;
     private String defaultHomeScreen;
-    private MarketStatus marketStatus;
+    @Builder.Default
+    private MarketStatus marketStatus=MarketStatus.ACTIVE;
     private String marketLocation;
     private IrisDto irisInfo;
     private ParkeonDto parkingInfo;
