@@ -1,18 +1,19 @@
 package com.demo.manage.entity;
-
+import com.demo.manage.enums.*;
 import java.time.Instant;
-import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
-
-
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,8 +25,8 @@ public class Market {
     @Id
     @Builder.Default
     private String marketID=UUID.randomUUID().toString();
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private Instant createdAt;
+    private Instant updatedAt;
     private String marketName;
     private String center;
     private Float radius;
@@ -35,7 +36,9 @@ public class Market {
     private String slug;
     private String description;
     private String photo;
+    @Indexed
     private String marketState;
+    private MarketStatus marketStatus;
     private Instant deletedAt;
     private Integer mapZoom;
     private Integer androidMapZoom;
@@ -48,5 +51,9 @@ public class Market {
     private Integer competitorLocationsCount;
     private Boolean visible;
     private String defaultHomeScreen;
+    private String marketLocation;
+    private List<Iris> irisInfo;
+    private List<Parkeon> parkingInfo;
+    private List<Venue> venueInfo;
 
 }

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.demo.manage.dto.MarketDto;
-import com.demo.manage.dto.UserDto;
 import com.demo.manage.entity.Market;
 import com.demo.manage.repository.MarketRepository;
 
@@ -20,10 +19,7 @@ public class RabbitMqListener {
 
 	@Autowired
 	private MarketRepository marketRepository;
-    @RabbitListener(queues="sample_queue")
-    public void getUserInfo(UserDto userDto){
-        log.info("Got user details "+userDto.toString());
-    }
+
     
     @RabbitListener(queues="sample_queue")
     public void getUserInfo(MarketDto marketDto){

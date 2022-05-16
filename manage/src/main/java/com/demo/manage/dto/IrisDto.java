@@ -2,11 +2,13 @@ package com.demo.manage.dto;
 
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,7 +16,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class IrisDto {
 
-    private Long irisID;
+	@Builder.Default
+    private String irisID= UUID.randomUUID().toString();
     private String username;
     private String password;
     private String encryptedPassword;

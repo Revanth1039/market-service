@@ -3,6 +3,7 @@ package com.demo.manage.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.manage.dto.MarketDto;
+import com.demo.manage.enums.MarketStatus;
 import com.demo.manage.service.ManageService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/market")
 @Slf4j
+@CrossOrigin(origins="http://localhost:3000")
 public class ManageController {
 
     @Autowired
@@ -48,9 +51,10 @@ public class ManageController {
         return manageService.removeMarketById(name);
     }
 
-    @GetMapping("/getAllMarketsByState/{state}/{pageNo}")
-    public List<MarketDto> getAllMaketsbyState(@PathVariable String state, @PathVariable Integer pageNo){
-        return manageService.findAllMarketsByState(state,pageNo);
+    @GetMapping("/getAllMarketsByStatus/{status}/{pageNo}")
+    public List<MarketDto> getAllMaketsbyState(@PathVariable("status") String status, @PathVariable("pageNo") Integer pageNo){
+    	MarketStatus marketStatus=MarketStatus.convert(status);
+        return manageService.findAllMarketsByState(marketStatus,pageNo);
     }
     
     @PostMapping("/addMarketInMQ")

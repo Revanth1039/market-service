@@ -1,6 +1,7 @@
 package com.demo.manage.dto;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,11 +14,11 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ParkeonDto {
 
-    private Long parkeonID;
-    private String username;
-    private String encryptedPassword;
-    private String encryptedPasswordIv;
-    private LocalDateTime deletedAt;
-    private Long marketID;
+	@Builder.Default
+	private String parkeonID=UUID.randomUUID().toString();
+	private String username;
+	private String encryptedPassword;
+	private String encryptedPasswordIv;
+	private LocalDateTime deletedAt;
+	private Long marketID;
 }
-

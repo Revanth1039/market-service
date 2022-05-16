@@ -1,6 +1,11 @@
 package com.demo.manage.dto;
 import java.time.Instant;
+import java.util.List;
 import java.util.UUID;
+
+import com.demo.manage.entity.Iris;
+import com.demo.manage.entity.Parkeon;
+import com.demo.manage.enums.MarketStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,6 +21,8 @@ public class MarketDto {
     @Builder.Default
     private String marketID=UUID.randomUUID().toString();
     private String marketName;
+    private Instant createdAt;
+    private Instant updatedAt;
     private String center;
     private Float radius;
     private Float latitude;
@@ -37,5 +44,10 @@ public class MarketDto {
     private Integer competitorLocationsCount;
     private Boolean visible;
     private String defaultHomeScreen;
+    private MarketStatus marketStatus;
+    private String marketLocation;
+    private List<IrisDto> irisInfo;
+    private List<ParkeonDto> parkingInfo;
+    private List<VenueDto> venueInfo;
 
 }

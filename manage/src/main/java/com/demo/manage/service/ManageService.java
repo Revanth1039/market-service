@@ -3,8 +3,8 @@ package com.demo.manage.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.demo.manage.dto.MarketDto;
 import com.demo.manage.entity.Market;
+import com.demo.manage.enums.MarketStatus;
 import com.demo.manage.repository.MarketRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -33,8 +34,9 @@ public class ManageService {
 	}
 
 	public MarketDto addMarketToRepository(MarketDto marketDto) {
-		Market market = new Market();
-		BeanUtils.copyProperties(marketDto, market);
+		ModelMapper modelMapper = new ModelMapper();
+		Market market=modelMapper.map(marketDto, Market.class);
+		log.info(market.toString());
 		marketRepository.save(market);
 		return marketDto;
 	}
@@ -42,8 +44,8 @@ public class ManageService {
 	public MarketDto getMarketById(String id) {
 		Market market = marketRepository.findById(id).get();
 		log.info(market.toString());
-		MarketDto marketDto = new MarketDto();
-		BeanUtils.copyProperties(market, marketDto);
+		ModelMapper modelMapper = new ModelMapper();
+		MarketDto marketDto=modelMapper.map(market, MarketDto.class);
 		return marketDto;
 	}
 
@@ -52,7 +54,8 @@ public class ManageService {
 		if (marketRepository.existsById(id)) {
 			Market market = marketRepository.findById(id).get();
 			log.info(market.toString());
-			BeanUtils.copyProperties(marketDto, market);
+			ModelMapper modelMapper = new ModelMapper();
+			market=modelMapper.map(marketDto, Market.class);
 			marketRepository.save(market);
 			return marketDto;
 		}
@@ -62,21 +65,21 @@ public class ManageService {
 	public MarketDto removeMarketById(String name) {
 		if (marketRepository.existsByMarketName(name)) {
 			Market market = marketRepository.getByMarketName(name);
-			MarketDto marketDto = new MarketDto();
-			BeanUtils.copyProperties(market, marketDto);
+			ModelMapper modelMapper = new ModelMapper();
+		    MarketDto marketDto=modelMapper.map(market, MarketDto.class);
 			marketRepository.deleteByMarketName(name);
 			return marketDto;
 		}
 		return null;
 	}
 
-	public List<MarketDto> findAllMarketsByState(String state, Integer pageNo) {
+	public List<MarketDto> findAllMarketsByState(MarketStatus status, Integer pageNo) {
 		List<MarketDto> marketModels = new ArrayList<>();
 		Pageable paging = PageRequest.of(pageNo, 10);
-		Page<Market> pagedResult = marketRepository.findAllByMarketStateOrderByMarketName(state, paging);
+		Page<Market> pagedResult = marketRepository.findAllByMarketStatusOrderByMarketName(status, paging);
 		pagedResult.toList().stream().forEach((market) -> {
-			MarketDto marketDto = new MarketDto();
-			BeanUtils.copyProperties(market, marketDto);
+			ModelMapper modelMapper = new ModelMapper();
+		    MarketDto marketDto=modelMapper.map(market, MarketDto.class);
 			marketModels.add(marketDto);
 		});
 		return marketModels;

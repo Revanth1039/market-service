@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class Iris {
 
     @Id
-    private Long irisID;
+    private String irisID;
     private String username;
     private String password;
     private String encryptedPassword;

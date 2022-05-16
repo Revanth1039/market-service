@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 public class Parkeon {
 
     @Id
-    private Long parkeonID;
+    private String parkeonID;
     private Instant createdAt;
     private Instant updatedAt;
     private String username;
