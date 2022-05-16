@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.UUID;
 
 import com.demo.manage.enums.MarketStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.InstantSerializer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,7 +22,9 @@ public class MarketDto {
     @Builder.Default
     private String marketID=UUID.randomUUID().toString();
     private String marketName;
+    @JsonSerialize(using = InstantSerializer.class)
     private Instant createdAt;
+    @JsonSerialize(using = InstantSerializer.class)
     private Instant updatedAt;
     private String center;
     private Float radius;
@@ -30,6 +35,7 @@ public class MarketDto {
     private String description;
     private String photo;
     private String marketState;
+    @JsonSerialize(using = InstantSerializer.class)
     private Instant deletedAt;
     private Integer mapZoom;
     private Integer androidMapZoom;

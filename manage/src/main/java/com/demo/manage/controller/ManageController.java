@@ -68,6 +68,11 @@ public class ManageController {
     	log.info("inside rabbit mq message publisher api");
         return manageService.sendDataToMQ(marketDto);
     }
+    
+    @PutMapping("/updateMarketStatus/{id}")
+    public MarketDto updateMarketStatus(@PathVariable String id) throws MarketExceptionMessage {
+    	return manageService.updateMarketStatus(id);
+    }
 
     
 

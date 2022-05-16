@@ -13,7 +13,7 @@ public class RabbitmqConfig {
 
     public static final String QUEUE = "sample_queue";
     public static final String EXCHANGE = "sample_exchange";
-    public static final String ROUTING_KEY = "sample_routingKey";
+    public static final String ROUTING_KEY = "sample_routing_key";
 
     @Bean
     public Queue queue() {

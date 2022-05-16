@@ -28,7 +28,7 @@ public class ManageService {
 
 	public static final String QUEUE = "sample_queue";
 	public static final String EXCHANGE = "sample_exchange";
-	public static final String ROUTING_KEY = "sample_routingKey";
+	public static final String ROUTING_KEY = "sample_routing_key";
 
 	public ManageService(MarketRepository marketRepository, RabbitTemplate rabbitTemplate) {
 		this.marketRepository = marketRepository;
@@ -100,5 +100,20 @@ public class ManageService {
 		log.info("sending data to MQ");
 		rabbitTemplate.convertAndSend(EXCHANGE, ROUTING_KEY, marketDto);
 		return "Sent data Successfully";
+	}
+
+	public MarketDto updateMarketStatus(String id) throws MarketExceptionMessage {
+		Market market=marketRepository.findById(id).orElse(null);
+		if(market==null) {
+			throw new MarketExceptionMessage(String.valueOf(HttpStatus.NOT_FOUND),"Market id not found");
+		}
+		if(market.getMarketStatus()==MarketStatus.ACTIVE)
+			market.setMarketStatus(MarketStatus.ARCHIVED);
+		else
+			market.setMarketStatus(MarketStatus.ACTIVE);
+		ModelMapper modelMapper = new ModelMapper();
+	    MarketDto marketDto=modelMapper.map(market, MarketDto.class);
+	    marketRepository.save(market);
+		return marketDto;
 	}
 }

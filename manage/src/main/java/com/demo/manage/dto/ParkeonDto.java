@@ -1,7 +1,10 @@
 package com.demo.manage.dto;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.UUID;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.InstantSerializer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,6 +22,7 @@ public class ParkeonDto {
 	private String username;
 	private String encryptedPassword;
 	private String encryptedPasswordIv;
-	private LocalDateTime deletedAt;
+	@JsonSerialize(using = InstantSerializer.class)
+	private Instant deletedAt;
 	private Long marketID;
 }

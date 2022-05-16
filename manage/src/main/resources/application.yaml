@@ -4,12 +4,16 @@ spring:
       database: manage-data
       host: localhost
       port: 27017
-#  rabbitmq:
-#      addresses: localhost:15672
-
+  rabbitmq:
+      password: JMF_D6eSRwN_cAZr8uzC1eIfiboEAkcp
+      addresses: amqps://zxzhkovo:JMF_D6eSRwN_cAZr8uzC1eIfiboEAkcp@puffin.rmq2.cloudamqp.com/zxzhkovo
+      username: zxzhkovo
+      
+          
+      
 
 server:
   port:
-    9000
+    9005
 
 
