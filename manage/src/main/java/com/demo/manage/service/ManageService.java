@@ -1,5 +1,6 @@
 package com.demo.manage.service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +27,9 @@ public class ManageService {
 	private MarketRepository marketRepository;
 	private RabbitTemplate rabbitTemplate;
 
-	public static final String QUEUE = "sample_queue";
-	public static final String EXCHANGE = "sample_exchange";
-	public static final String ROUTING_KEY = "sample_routing_key";
+	public static final String QUEUE = "pp_queue";
+	public static final String EXCHANGE = "pp_exchange";
+	public static final String ROUTING_KEY = "pp_routing_key";
 
 	public ManageService(MarketRepository marketRepository, RabbitTemplate rabbitTemplate) {
 		this.marketRepository = marketRepository;
@@ -61,6 +62,7 @@ public class ManageService {
 
 	public MarketDto updateMarketInRepository(MarketDto marketDto, String id) throws MarketExceptionMessage {
 		log.info(marketDto.toString()+" "+id);
+		marketDto.setUpdatedAt(LocalDateTime.now());
 		if (marketRepository.existsById(id)) {
 			Market market = marketRepository.findById(id).get();
 			log.info(market.toString());

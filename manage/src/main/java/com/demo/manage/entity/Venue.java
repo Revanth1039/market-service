@@ -1,6 +1,6 @@
 package com.demo.manage.entity;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
@@ -23,7 +23,7 @@ public class Venue {
     private String venueID=UUID.randomUUID().toString();
 	
 	private String title;
-	private Instant createdAt;
+	private LocalDateTime createdAt;
 	private String updatedAt;
 	private String photo;
 	

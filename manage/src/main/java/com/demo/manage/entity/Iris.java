@@ -1,13 +1,10 @@
 package com.demo.manage.entity;
 
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.ser.InstantSerializer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,6 +34,6 @@ public class Iris {
     private String encryptedTransactionToken;
     private String encryptedTransactionTokenIv;
     private String marketID;
-    private Instant deletedAt;
+    private LocalDateTime deletedAt;
 
 }

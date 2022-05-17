@@ -1,5 +1,6 @@
 package com.demo.manage.entity;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,8 +27,8 @@ public class Market {
     @Id
     @Builder.Default
     private String marketID=UUID.randomUUID().toString();
-    private Instant createdAt;
-    private Instant updatedAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
     private String marketName;
     private String center;
     private Float radius;
@@ -40,7 +41,7 @@ public class Market {
     @Indexed
     private String marketState;
     private MarketStatus marketStatus;
-    private Instant deletedAt;
+    private LocalDateTime deletedAt;
     private Integer mapZoom;
     private Integer androidMapZoom;
     private Integer iosMapZoom;

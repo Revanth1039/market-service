@@ -1,12 +1,11 @@
 package com.demo.manage.dto;
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
 import com.demo.manage.enums.MarketStatus;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.ser.InstantSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,10 +21,10 @@ public class MarketDto {
     @Builder.Default
     private String marketID=UUID.randomUUID().toString();
     private String marketName;
-    @JsonSerialize(using = InstantSerializer.class)
-    private Instant createdAt;
-    @JsonSerialize(using = InstantSerializer.class)
-    private Instant updatedAt;
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    private LocalDateTime createdAt=LocalDateTime.now();
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    private LocalDateTime updatedAt=LocalDateTime.now();
     private String center;
     private Float radius;
     private Float latitude;
@@ -35,8 +34,8 @@ public class MarketDto {
     private String description;
     private String photo;
     private String marketState;
-    @JsonSerialize(using = InstantSerializer.class)
-    private Instant deletedAt;
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    private LocalDateTime deletedAt=LocalDateTime.now();
     private Integer mapZoom;
     private Integer androidMapZoom;
     private Integer iosMapZoom;

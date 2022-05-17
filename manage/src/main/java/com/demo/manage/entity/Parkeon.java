@@ -1,6 +1,6 @@
 package com.demo.manage.entity;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -22,12 +22,12 @@ public class Parkeon {
 
     @Id
     private String parkeonID;
-    private Instant createdAt;
-    private Instant updatedAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
     private String username;
     private String encryptedPassword;
     private String encryptedPasswordIv;
-    private Instant deletedAt;
+    private LocalDateTime deletedAt;
     private Long marketID;
 }
 

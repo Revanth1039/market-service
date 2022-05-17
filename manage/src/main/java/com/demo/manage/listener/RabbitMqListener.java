@@ -1,11 +1,12 @@
 package com.demo.manage.listener;
 
+import java.util.Map;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.demo.manage.dto.MarketDto;
 import com.demo.manage.entity.Market;
 import com.demo.manage.repository.MarketRepository;
 
@@ -21,9 +22,10 @@ public class RabbitMqListener {
 	private MarketRepository marketRepository;
 
     
-    @RabbitListener(queues="sample_queue")
-    public void getUserInfo(MarketDto marketDto){
+    @RabbitListener(queues="pp_queue")
+    public void getUserInfo(Map<String,Object> marketDto){
     	ModelMapper modelMapper = new ModelMapper();
+    	log.info(marketDto.toString());
 		Market market=modelMapper.map(marketDto, Market.class);
         log.info("Got the details "+market.toString());
         marketRepository.save(market);

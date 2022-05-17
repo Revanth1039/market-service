@@ -1,11 +1,11 @@
 package com.demo.manage.dto;
 
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.ser.InstantSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,7 +35,7 @@ public class IrisDto {
     private String encryptedTransactionToken;
     private String encryptedTransactionTokenIv;
     private String marketID;
-    @JsonSerialize(using = InstantSerializer.class)
-    private Instant deletedAt;
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    private LocalDateTime deletedAt=LocalDateTime.now();
 
 }
