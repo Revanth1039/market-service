@@ -8,8 +8,13 @@ spring:
       password: JMF_D6eSRwN_cAZr8uzC1eIfiboEAkcp
       addresses: amqps://zxzhkovo:JMF_D6eSRwN_cAZr8uzC1eIfiboEAkcp@puffin.rmq2.cloudamqp.com/zxzhkovo
       username: zxzhkovo
-      
-          
+keycloak:
+  auth-server-url: http://localhost:8090/auth
+  realm: Pp
+  public-client: 'true'
+  resource: pp
+  ssl-required: external     
+  principal-attribute: preferred_username
       
 
 server:

@@ -33,7 +33,7 @@ public class ManageController {
     @PostMapping("/addMarket")
     public MarketDto addMarket(@RequestBody MarketDto marketDto) throws MarketExceptionMessage{
     	log.info("inside post api of market");
-        return manageService.addMarketToRepository(marketDto);
+        return manageService.addMarketInRepository(marketDto);
     }
 
     @GetMapping("/getMarketById/{id}")
@@ -57,10 +57,10 @@ public class ManageController {
     }
 
     @GetMapping("/getAllMarketsByStatus/{status}/{pageNo}")
-    public List<MarketDto> getAllMaketsbyState(@PathVariable("status") String status, @PathVariable("pageNo") Integer pageNo){
+    public List<MarketDto> getAllMaketsbyStatus(@PathVariable("status") String status, @PathVariable("pageNo") Integer pageNo){
     	log.info("inside get all market based on status active/archive");
     	MarketStatus marketStatus=MarketStatus.convert(status);
-        return manageService.findAllMarketsByState(marketStatus,pageNo);
+        return manageService.findAllMarketsByStatus(marketStatus,pageNo);
     }
     
     @PostMapping("/addMarketInMQ")

@@ -1,7 +1,6 @@
 package com.demo.manage.controller.exception;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.validation.ConstraintViolationException;
 

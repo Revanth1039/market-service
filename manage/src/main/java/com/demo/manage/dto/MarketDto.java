@@ -22,8 +22,10 @@ public class MarketDto {
     private String marketID=UUID.randomUUID().toString();
     private String marketName;
     @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @Builder.Default
     private LocalDateTime createdAt=LocalDateTime.now();
     @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @Builder.Default
     private LocalDateTime updatedAt=LocalDateTime.now();
     private String center;
     private Float radius;
@@ -35,6 +37,7 @@ public class MarketDto {
     private String photo;
     private String marketState;
     @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @Builder.Default
     private LocalDateTime deletedAt=LocalDateTime.now();
     private Integer mapZoom;
     private Integer androidMapZoom;

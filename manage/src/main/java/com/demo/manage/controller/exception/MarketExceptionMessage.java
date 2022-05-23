@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 public class MarketExceptionMessage extends Throwable{
 	public static final long serialVersionUID =123;
 	private String Code;
-	private String Message;
-	
+	private String Message;	
 	
 }

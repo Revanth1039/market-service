@@ -23,6 +23,7 @@ public class ParkeonDto {
 	private String encryptedPassword;
 	private String encryptedPasswordIv;
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	@Builder.Default
 	private LocalDateTime deletedAt=LocalDateTime.now();
 	private Long marketID;
 }

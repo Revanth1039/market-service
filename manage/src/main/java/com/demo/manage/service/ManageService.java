@@ -36,7 +36,7 @@ public class ManageService {
 		this.rabbitTemplate = rabbitTemplate;
 	}
 
-	public MarketDto addMarketToRepository(MarketDto marketDto) throws MarketExceptionMessage {
+	public MarketDto addMarketInRepository(MarketDto marketDto) throws MarketExceptionMessage {
 		try {
 		ModelMapper modelMapper = new ModelMapper();
 		Market market=modelMapper.map(marketDto, Market.class);
@@ -64,7 +64,7 @@ public class ManageService {
 		log.info(marketDto.toString()+" "+id);
 		marketDto.setUpdatedAt(LocalDateTime.now());
 		if (marketRepository.existsById(id)) {
-			Market market = marketRepository.findById(id).get();
+			Market market = marketRepository.getByMarketID(id);
 			log.info(market.toString());
 			ModelMapper modelMapper = new ModelMapper();
 			market=modelMapper.map(marketDto, Market.class);
@@ -85,7 +85,7 @@ public class ManageService {
 		throw new MarketExceptionMessage(String.valueOf(HttpStatus.NOT_FOUND),"Market id not found");
 	}
 
-	public List<MarketDto> findAllMarketsByState(MarketStatus status, Integer pageNo) {
+	public List<MarketDto> findAllMarketsByStatus(MarketStatus status, Integer pageNo) {
 		List<MarketDto> marketModels = new ArrayList<>();
 		Pageable paging = PageRequest.of(pageNo, 10);
 		Page<Market> pagedResult = marketRepository.findAllByMarketStatusOrderByMarketName(status, paging);

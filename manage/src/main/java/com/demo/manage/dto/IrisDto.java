@@ -36,6 +36,7 @@ public class IrisDto {
     private String encryptedTransactionTokenIv;
     private String marketID;
     @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @Builder.Default
     private LocalDateTime deletedAt=LocalDateTime.now();
 
 }
